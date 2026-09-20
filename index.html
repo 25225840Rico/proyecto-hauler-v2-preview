@@ -50,14 +50,15 @@
   <meta name="geo.position" content="-23.6509;-70.3954">
   <meta name="ICBM" content="-23.6509, -70.3954">
 
-  <!-- PRECONNECT (acelera carga de recursos externos — Core Web Vitals 2026) -->
-  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <!-- PRECONNECT (acelera carga de recursos externos — Core Web Vitals 2026)
+       Font Awesome (cdnjs) se retiró del Home: la iconografía ahora es un
+       sprite SVG outline propio, en línea. Un tercero menos en la ruta crítica. -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
 
-  <!-- Preload de la foto de flota real usada como fondo del hero (candidato LCP above-the-fold) -->
-  <link rel="preload" as="image" href="public_html/img/2.webp" fetchpriority="high">
+  <!-- Preload del poster del hero: es el elemento LCP. El video se carga
+       después y sólo cuando puede reproducirse sin penalizar el primer render. -->
+  <link rel="preload" as="image" href="public_html/img/hero-poster.jpg" fetchpriority="high">
 
   <!-- CSS crítico (bloqueante, mismo origen): Bootstrap local + bundle v13
        (style + glass-v10 + polish-v11 + refine-v12 minificados en un archivo) -->
@@ -67,13 +68,11 @@
        sobreescribir sólo lo necesario del hero, sin tocar otras páginas -->
   <link rel="stylesheet" href="public_html/css/redesign-2026.css?v=3">
 
-  <!-- CSS no crítico (asíncrono, no bloquea el primer render):
-       tipografías Google + Font Awesome (iconos) -->
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@400;500;600;700;800&display=swap" onload="this.onload=null;this.rel='stylesheet'">
-  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" onload="this.onload=null;this.rel='stylesheet'">
+  <!-- CSS no crítico (asíncrono, no bloquea el primer render): sólo tipografías.
+       Pesos recortados a los realmente usados (400/600/700/800). -->
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Sora:wght@700;800&display=swap" onload="this.onload=null;this.rel='stylesheet'">
   <noscript>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@400;500;600;700;800&display=swap">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Sora:wght@700;800&display=swap">
   </noscript>
 
   <!-- FAVICON -->
@@ -285,37 +284,55 @@
   </script>
 
 <noscript><style>#ob-form{display:none!important}</style></noscript></head>
-<body><div role="note" style="background:#102c45;color:#fff;padding:10px 20px;font:600 14px/1.4 Arial,sans-serif;text-align:center">Vista previa del rediseño. El formulario no envía solicitudes. <a style="color:#fff;text-decoration:underline" href="https://hauler.cl/">Ir al sitio actual</a></div>
+<body>
 
 
-<a class="h26-skip-link" href="#contenido-principal">Saltar al contenido</a>
+<a class="h26-skip-link" href="#contenido-principal">Saltar al contenido</a><div role="note" style="background:#102c45;color:#fff;padding:10px 20px;font:600 14px/1.4 Arial,sans-serif;text-align:center">Vista previa del rediseño. El formulario no envía solicitudes. <a style="color:#fff;text-decoration:underline" href="https://hauler.cl/">Ir al sitio actual</a></div>
+
+<!-- ============================================================
+     SPRITE DE ICONOS — sistema unico outline, stroke 1.6 (PDF §9).
+     Reemplaza a Font Awesome en el Home y elimina un tercero de la
+     ruta critica. Ningun emoji se usa como iconografia de producto.
+============================================================ -->
+<svg class="h26-sr-only" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"><defs>
+  <symbol id="h26-i-users" viewBox="0 0 24 24"><path d="M16 19v-1.5A3.5 3.5 0 0 0 12.5 14h-5A3.5 3.5 0 0 0 4 17.5V19"/><circle cx="10" cy="8" r="3.2"/><path d="M19 19v-1.4a3.3 3.3 0 0 0-2.4-3.1M15.4 5.2a3.2 3.2 0 0 1 0 5.9"/></symbol>
+  <symbol id="h26-i-briefcase" viewBox="0 0 24 24"><rect x="3" y="7.5" width="18" height="12" rx="2"/><path d="M9 7.5V6a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v1.5M3 12.5h18"/></symbol>
+  <symbol id="h26-i-plane" viewBox="0 0 24 24"><path d="M10.5 3.6a1.5 1.5 0 0 1 3 0V9l7 4.2v2.1l-7-2.1v4.2l2.2 1.7v1.5L12 19.8l-3.7.9v-1.5l2.2-1.7v-4.2l-7 2.1v-2.1L10.5 9z"/></symbol>
+  <symbol id="h26-i-route" viewBox="0 0 24 24"><circle cx="6" cy="5.5" r="2.5"/><circle cx="18" cy="18.5" r="2.5"/><path d="M6 8v4a3.5 3.5 0 0 0 3.5 3.5h5a3.5 3.5 0 0 0 3.5-3.5V8"/></symbol>
+  <symbol id="h26-i-van" viewBox="0 0 24 24"><path d="M2 16.5V9a1.5 1.5 0 0 1 1.5-1.5h9L18 11h2.5A1.5 1.5 0 0 1 22 12.5v4H19M8 16.5H2M13 16.5h3"/><circle cx="6.5" cy="17" r="1.9"/><circle cx="17.5" cy="17" r="1.9"/></symbol>
+  <symbol id="h26-i-shield" viewBox="0 0 24 24"><path d="M12 3.2 5 6v5.5c0 4.2 2.9 7.6 7 9.3 4.1-1.7 7-5.1 7-9.3V6z"/><path d="m9.2 12.2 2 2 3.6-3.9"/></symbol>
+  <symbol id="h26-i-clipboard" viewBox="0 0 24 24"><rect x="5" y="4.5" width="14" height="16" rx="2"/><path d="M9 4.5V3.6A1.6 1.6 0 0 1 10.6 2h2.8A1.6 1.6 0 0 1 15 3.6v.9M8.5 11h7M8.5 15h4.5"/></symbol>
+  <symbol id="h26-i-refresh" viewBox="0 0 24 24"><path d="M20 12a8 8 0 1 1-2.6-5.9M20 4v4.5h-4.5"/></symbol>
+  <symbol id="h26-i-headset" viewBox="0 0 24 24"><path d="M4.5 14.5v-2a7.5 7.5 0 0 1 15 0v2"/><rect x="2.8" y="13.5" width="3.6" height="6" rx="1.6"/><rect x="17.6" y="13.5" width="3.6" height="6" rx="1.6"/><path d="M19.5 19.5v.4a2.6 2.6 0 0 1-2.6 2.6H13"/></symbol>
+  <symbol id="h26-i-pin" viewBox="0 0 24 24"><path d="M12 21.5s7-5.6 7-11a7 7 0 1 0-14 0c0 5.4 7 11 7 11z"/><circle cx="12" cy="10.2" r="2.6"/></symbol>
+  <symbol id="h26-i-phone" viewBox="0 0 24 24"><path d="M21 16.9v2.6a1.7 1.7 0 0 1-1.9 1.7 17 17 0 0 1-7.4-2.6 16.7 16.7 0 0 1-5.1-5.1A17 17 0 0 1 4 6.1 1.7 1.7 0 0 1 5.7 4.2h2.6a1.7 1.7 0 0 1 1.7 1.5c.1.9.3 1.7.6 2.5a1.7 1.7 0 0 1-.4 1.8l-1.1 1.1a13.6 13.6 0 0 0 5.1 5.1l1.1-1.1a1.7 1.7 0 0 1 1.8-.4c.8.3 1.6.5 2.5.6a1.7 1.7 0 0 1 1.4 1.6z"/></symbol>
+  <symbol id="h26-i-mail" viewBox="0 0 24 24"><rect x="3" y="5.5" width="18" height="13" rx="2"/><path d="m3.6 7 8.4 6 8.4-6"/></symbol>
+  <symbol id="h26-i-whatsapp" viewBox="0 0 24 24"><path d="M3.5 20.5 4.9 16a8.2 8.2 0 1 1 3.2 3.1z"/><path d="M9 9.3c.2-.5.4-.5.7-.5h.5c.2 0 .4 0 .6.5l.7 1.6c.1.3 0 .5-.1.7l-.4.5c-.1.2-.2.3 0 .6a6.4 6.4 0 0 0 2.9 2.4c.3.1.4 0 .6-.1l.6-.7c.2-.2.4-.2.6-.1l1.6.8c.3.1.4.3.4.5a1.9 1.9 0 0 1-1.3 1.5 3.9 3.9 0 0 1-3-.7 9.7 9.7 0 0 1-4-4.4 3.2 3.2 0 0 1 .6-2.6z"/></symbol>
+  <symbol id="h26-i-play" viewBox="0 0 24 24"><path d="M7.5 5.3 18 12 7.5 18.7z"/></symbol>
+  <symbol id="h26-i-pause" viewBox="0 0 24 24"><path d="M9 5v14M15 5v14"/></symbol>
+  <symbol id="h26-i-arrow" viewBox="0 0 24 24"><path d="M5 12h13M12.5 6l6 6-6 6"/></symbol>
+  <symbol id="h26-i-doc" viewBox="0 0 24 24"><path d="M14 3v4.5a1 1 0 0 0 1 1h4.5"/><path d="M19.5 8.5V20a1.5 1.5 0 0 1-1.5 1.5H6A1.5 1.5 0 0 1 4.5 20V4A1.5 1.5 0 0 1 6 2.5h8z"/><path d="M8.5 13h7M8.5 17h4.5"/></symbol>
+  <symbol id="h26-i-lock" viewBox="0 0 24 24"><rect x="4.5" y="10" width="15" height="10.5" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></symbol>
+</defs></svg>
+
 <!-- NAVBAR -->
-<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
-  <div class="container-fluid px-5">
+<nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
+  <div class="container-fluid">
     <a class="navbar-brand fw-bold ps-0 ms-0" href="#inicio" aria-label="Hauler, volver al inicio">
-      <img src="public_html/img/logotipohauler-nav.webp" class="logo" alt="Hauler SpA - Transporte Corporativo, Industrial y Minero en Antofagasta" width="234" height="60" fetchpriority="high">
+      <img src="public_html/img/logotipohauler-nav.webp" class="logo" alt="Hauler SpA — Transporte de personal en Antofagasta" width="234" height="60" fetchpriority="high">
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Abrir menú de navegación">
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link " href="./">Inicio</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#servicios">Servicios</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#proceso">Cómo trabajamos</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link nav-link--cta" href="#cotizar">Cotizar operación</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link " href="https://hauler.cl/seccionproveedores">Sección proveedores</a>
-        </li>
+      <ul class="navbar-nav align-items-lg-center">
+        <li class="nav-item"><a class="nav-link" href="#servicios">Servicios</a></li>
+        <li class="nav-item"><a class="nav-link" href="#proceso">Cómo funciona</a></li>
+        <li class="nav-item"><a class="nav-link" href="#flota">Flota</a></li>
+        <li class="nav-item"><a class="nav-link" href="#cobertura">Cobertura</a></li>
+        <li class="nav-item"><a class="nav-link" href="#preguntas-frecuentes">FAQ</a></li>
+        <li class="nav-item"><a class="nav-link nav-link--cta" href="#cotizar">Cotizar operación</a></li>
       </ul>
     </div>
   </div>
@@ -323,19 +340,40 @@
 
 
 <main id="contenido-principal">
-<!-- HERO -->
-<header id="inicio" class="hero hero--redesign d-flex align-items-center text-white position-relative overflow-hidden">
-  <img src="public_html/img/2.webp" alt="Varias camionetas de pasajeros estacionadas cerca de una instalación minera en el norte de Chile" class="hero-bg-img" width="1920" height="1080" fetchpriority="high">
-  <div class="hero-overlay"></div>
-  <div class="container mt-5 pt-5 position-relative">
+<!-- ============================================================
+     1. HERO — propuesta de valor + CTA dominante (PDF §6.1, §8)
+============================================================ -->
+<header id="inicio" class="hero hero--redesign">
+  <div class="hero-media" id="hero-media" data-video="paused">
+    <!-- Poster: elemento LCP, ya descargado por preload. -->
+    <img src="public_html/img/hero-poster.jpg" alt="Flota de transporte de personal de Hauler en una instalación industrial del norte de Chile" width="1920" height="1080" fetchpriority="high" decoding="async">
+    <!-- Video institucional existente. Carga diferida: solo se descarga y
+         reproduce cuando el hero esta visible, no hay reduced-motion y la
+         conexion no pide ahorro de datos. Silenciado, sin controles nativos. -->
+    <video id="hero-video" preload="none" muted loop playsinline disablepictureinpicture
+           poster="public_html/img/hero-poster.jpg" aria-hidden="true" tabindex="-1"
+           width="1920" height="1080" data-src="public_html/img/videodeportada.mp4"></video>
+  </div>
+  <div class="hero-overlay" aria-hidden="true"></div>
+
+  <button type="button" class="h26-video-toggle" id="hero-video-toggle" aria-pressed="true" hidden>
+    <svg class="h26-icon h26-icon--sm h26-icon-pause" aria-hidden="true"><use href="#h26-i-pause"></use></svg>
+    <svg class="h26-icon h26-icon--sm h26-icon-play" aria-hidden="true"><use href="#h26-i-play"></use></svg>
+    <span class="h26-video-toggle-text">Reproducir video</span>
+  </button>
+
+  <div class="h26-container">
     <span class="hero-kicker"><span class="hero-kicker-dot" aria-hidden="true"></span>Operador B2B · Región de Antofagasta</span>
-    <h1 class="fw-bold">Transporte de personal para operaciones que no pueden detenerse</h1>
-    <p class="lead">Traslados de personal para empresas industriales y mineras en Antofagasta, dimensionados según ruta, dotación y frecuencia.</p>
-    <div class="d-flex gap-3 mt-3 flex-wrap">
-      <a href="#cotizar" class="btn btn-hauler-primary fw-semibold">Cotizar operación</a>
-      <a href="https://wa.link/te8k8u" target="_blank" rel="noopener noreferrer" class="btn btn-hauler-secondary fw-semibold">Urgencia operativa por WhatsApp</a>
+    <h1>Transporte de personal para operaciones que no pueden detenerse</h1>
+    <p class="lead">Turnos mineros, operaciones industriales y traslados corporativos dimensionados según ruta, dotación y frecuencia.</p>
+    <div class="hero-actions">
+      <a href="#cotizar" class="btn-hauler-primary">Cotizar operación</a>
+      <a href="https://wa.link/te8k8u" target="_blank" rel="noopener noreferrer" class="btn-hauler-secondary">
+        <svg class="h26-icon h26-icon--sm" aria-hidden="true"><use href="#h26-i-whatsapp"></use></svg>
+        Urgencia operacional — WhatsApp
+      </a>
     </div>
-    <ol class="hero-steps list-unstyled mt-4 mb-0">
+    <ol class="hero-steps">
       <li><span class="hero-step-num" aria-hidden="true">1</span>Describe tu ruta</li>
       <li><span class="hero-step-num" aria-hidden="true">2</span>Indica dotación y turno</li>
       <li><span class="hero-step-num" aria-hidden="true">3</span>Solicita evaluación</li>
@@ -344,440 +382,661 @@
 </header>
 
 
-<!-- CAPACIDAD OPERATIVA -->
-<section id="quienes-somos" class="h26-proof" aria-labelledby="h26-proof-title">
-  <div class="container">
+<!-- ============================================================
+     2. PRUEBA OPERACIONAL TEMPRANA (PDF §6.2, §15)
+============================================================ -->
+<section id="quienes-somos" class="h26-proof h26-section" aria-labelledby="h26-proof-title">
+  <div class="h26-container">
     <div class="h26-proof-grid">
       <div class="h26-proof-copy">
-        <span class="section-eyebrow">Operación en terreno</span>
-        <h2 id="h26-proof-title">El servicio comienza por entender tu ruta.</h2>
-        <p class="h26-intro">Hauler organiza traslados de personal para empresas industriales y mineras desde Antofagasta. Cada requerimiento se revisa según origen, destino, dotación y frecuencia.</p>
+        <span class="h26-eyebrow">Operación en terreno</span>
+        <h2 id="h26-proof-title">El servicio comienza por entender tu ruta</h2>
+        <p class="h26-intro">Hauler organiza traslados de personal para empresas industriales y mineras desde Antofagasta. Cada requerimiento se revisa según origen, destino, dotación y frecuencia antes de proponer un servicio.</p>
         <div class="h26-proof-points" aria-label="Aspectos que revisamos para dimensionar un traslado">
           <div><span class="h26-proof-num">01</span><div><h3>Ruta y horarios</h3><p>Origen, destino y ventanas de traslado.</p></div></div>
-          <div><span class="h26-proof-num">02</span><div><h3>Dotación</h3><p>Pasajeros y tipo de servicio requerido.</p></div></div>
-          <div><span class="h26-proof-num">03</span><div><h3>Frecuencia</h3><p>Viajes puntuales, recurrentes o por turno.</p></div></div>
+          <div><span class="h26-proof-num">02</span><div><h3>Dotación</h3><p>Pasajeros por viaje y tipo de servicio requerido.</p></div></div>
+          <div><span class="h26-proof-num">03</span><div><h3>Frecuencia</h3><p>Viajes puntuales, recurrentes o sincronizados con turno.</p></div></div>
         </div>
-        <a class="h26-text-link" href="#servicios">Explorar servicios <span aria-hidden="true">↗</span></a>
+        <a class="h26-text-link" href="#servicios">Explorar servicios <svg class="h26-icon h26-icon--sm" aria-hidden="true"><use href="#h26-i-arrow"></use></svg></a>
       </div>
       <figure class="h26-proof-image">
-        <img src="public_html/img/1.webp" alt="Vehículos de transporte de personal en Antofagasta" loading="lazy" width="600" height="400">
+        <img src="public_html/img/1.webp" alt="Vehículos de transporte de personal de Hauler estacionados en Antofagasta" loading="lazy" decoding="async" width="900" height="675">
         <figcaption>Transporte de personal · Antofagasta</figcaption>
       </figure>
     </div>
   </div>
 </section>
 
-<!-- SERVICIOS -->
-<section id="servicios" class="h26-services" aria-labelledby="h26-services-title">
-  <div class="container">
-    <div class="h26-section-heading">
-      <span class="section-eyebrow">Servicios</span>
-      <h2 id="h26-services-title">Movilidad que se adapta a la operación.</h2>
+
+<!-- ============================================================
+     3. SERVICIOS PRINCIPALES (PDF §6.3)
+============================================================ -->
+<section id="servicios" class="h26-services h26-section" aria-labelledby="h26-services-title">
+  <div class="h26-container">
+    <div class="h26-section-head">
+      <span class="h26-eyebrow">Servicios</span>
+      <h2 id="h26-services-title">Movilidad que se adapta a la operación</h2>
       <p>Cuatro formas de organizar traslados en Antofagasta y la región. La ruta, el horario y la cantidad de pasajeros definen cada propuesta.</p>
     </div>
     <div class="h26-service-grid">
       <article class="h26-service-card">
         <span class="h26-service-index">01 / PERSONAL</span>
-        <i class="fa fa-users" aria-hidden="true"></i>
+        <span class="h26-service-icon"><svg class="h26-icon h26-icon--lg" aria-hidden="true"><use href="#h26-i-users"></use></svg></span>
         <h3>Transporte a faenas</h3>
         <p>Traslados de equipos hacia faenas mineras y plantas industriales, coordinados con los horarios de la operación.</p>
-        <a href="#cotizar" aria-label="Cotizar transporte a faenas">Describir mi ruta <span aria-hidden="true">↗</span></a>
+        <a class="h26-text-link" href="#cotizar" aria-label="Cotizar transporte a faenas">Describir mi ruta <svg class="h26-icon h26-icon--sm" aria-hidden="true"><use href="#h26-i-arrow"></use></svg></a>
       </article>
       <article class="h26-service-card">
         <span class="h26-service-index">02 / CORPORATIVO</span>
-        <i class="fa fa-briefcase" aria-hidden="true"></i>
+        <span class="h26-service-icon"><svg class="h26-icon h26-icon--lg" aria-hidden="true"><use href="#h26-i-briefcase"></use></svg></span>
         <h3>Movilidad corporativa</h3>
         <p>Viajes para equipos de trabajo, visitas técnicas y reuniones, con recorridos y horarios definidos para cada solicitud.</p>
-        <a href="#cotizar" aria-label="Cotizar movilidad corporativa">Describir mi ruta <span aria-hidden="true">↗</span></a>
+        <a class="h26-text-link" href="#cotizar" aria-label="Cotizar movilidad corporativa">Describir mi ruta <svg class="h26-icon h26-icon--sm" aria-hidden="true"><use href="#h26-i-arrow"></use></svg></a>
       </article>
       <article class="h26-service-card">
         <span class="h26-service-index">03 / CONEXIONES</span>
-        <i class="fa fa-plane" aria-hidden="true"></i>
+        <span class="h26-service-icon"><svg class="h26-icon h26-icon--lg" aria-hidden="true"><use href="#h26-i-plane"></use></svg></span>
         <h3>Aeropuerto, hotel y faena</h3>
         <p>Conexiones programadas entre el Aeropuerto Andrés Sabella, alojamientos, oficinas y puntos de trabajo.</p>
-        <a href="#cotizar" aria-label="Cotizar traslado desde el aeropuerto">Describir mi ruta <span aria-hidden="true">↗</span></a>
+        <a class="h26-text-link" href="#cotizar" aria-label="Cotizar traslado desde el aeropuerto">Describir mi ruta <svg class="h26-icon h26-icon--sm" aria-hidden="true"><use href="#h26-i-arrow"></use></svg></a>
       </article>
       <article class="h26-service-card">
         <span class="h26-service-index">04 / CONTINGENCIA</span>
-        <i class="fa fa-route" aria-hidden="true"></i>
+        <span class="h26-service-icon"><svg class="h26-icon h26-icon--lg" aria-hidden="true"><use href="#h26-i-route"></use></svg></span>
         <h3>Apoyo operacional</h3>
         <p>Evaluación de traslados especiales y refuerzos de operación según ruta, pasajeros y disponibilidad.</p>
-        <a href="#cotizar" aria-label="Consultar apoyo operacional">Describir mi ruta <span aria-hidden="true">↗</span></a>
+        <a class="h26-text-link" href="#cotizar" aria-label="Consultar apoyo operacional">Describir mi ruta <svg class="h26-icon h26-icon--sm" aria-hidden="true"><use href="#h26-i-arrow"></use></svg></a>
       </article>
     </div>
   </div>
 </section>
 
-<!-- PROCESO -->
-<section id="proceso" class="h26-process" aria-labelledby="h26-process-title">
-  <div class="container">
-    <div class="h26-process-heading">
-      <span class="section-eyebrow">Cómo trabajamos</span>
-      <h2 id="h26-process-title">De la necesidad de traslado a una propuesta operativa.</h2>
+
+<!-- ============================================================
+     4. CÓMO FUNCIONA (PDF §6.4)
+============================================================ -->
+<section id="proceso" class="h26-process h26-section" aria-labelledby="h26-process-title">
+  <div class="h26-container">
+    <div class="h26-section-head h26-section-head--onnavy">
+      <span class="h26-eyebrow h26-eyebrow--onnavy">Cómo funciona</span>
+      <h2 id="h26-process-title">De la necesidad de traslado a una propuesta operativa</h2>
       <p>Una conversación concreta permite definir el alcance del servicio antes de cotizarlo.</p>
     </div>
     <ol class="h26-process-steps">
       <li><span aria-hidden="true">01</span><div><h3>Comparte el trayecto</h3><p>Indica origen, destino, horarios y fecha estimada de inicio.</p></div></li>
       <li><span aria-hidden="true">02</span><div><h3>Define la demanda</h3><p>Señala pasajeros, frecuencia y tipo de servicio que necesitas.</p></div></li>
-      <li><span aria-hidden="true">03</span><div><h3>Revisa el alcance</h3><p>Con esos datos se puede evaluar la ruta y preparar una propuesta ajustada a la operación.</p></div></li>
+      <li><span aria-hidden="true">03</span><div><h3>Revisa el alcance</h3><p>Con esos datos evaluamos la ruta y preparamos una propuesta ajustada a la operación.</p></div></li>
     </ol>
-    <a href="#cotizar" class="btn btn-hauler-primary h26-process-cta">Describir operación</a>
+    <a href="#cotizar" class="btn-hauler-primary">Describir operación</a>
   </div>
 </section>
 
-<!-- Sección Cotización -->
-<section id="cotizar" class="ob-section bg-light py-5">
-  <div class="container">
-    <header class="ob-header">
-      <span class="section-eyebrow">Cotización</span>
-      <h2 id="ob-titulo">Describe tu operación</h2>
-      <p>Indica la ruta, la dotación y la frecuencia del traslado. Con ese detalle evaluamos tu operación.</p>
-      <p class="ob-aviso"><strong>Vista previa:</strong> este formulario es un prototipo y no envía solicitudes.</p>
-      <noscript><p class="ob-noscript">Este prototipo necesita JavaScript y de todos modos no envía solicitudes. Para cotizar, usa el <a href="https://hauler.cl/#cotizar">formulario de cotización vigente</a> o escribe por <a href="https://wa.link/te8k8u">WhatsApp</a>.</p></noscript>
-    </header>
 
+<!-- ============================================================
+     5. OPERATION BUILDER (PDF §6.5, §11, §12, §13)
+     Formulario progresivo con resumen en vivo. El prototipo NO envía
+     datos: la acción final entrega un resumen revisable en pantalla.
+============================================================ -->
+<section id="cotizar" class="ob-section h26-section" aria-labelledby="ob-titulo">
+  <div class="h26-container">
     <div class="ob-layout">
-      <aside class="ob-resumen" aria-labelledby="ob-resumen-titulo">
-        <h3 id="ob-resumen-titulo">Resumen de la operación</h3>
-        <dl class="ob-resumen-lista">
-          <div><dt>Origen</dt><dd id="ob-res-origen">Sin indicar</dd></div>
-          <div><dt>Destino</dt><dd id="ob-res-destino">Sin indicar</dd></div>
-          <div><dt>Pasajeros</dt><dd id="ob-res-pasajeros">Sin indicar</dd></div>
-          <div><dt>Frecuencia</dt><dd id="ob-res-frecuencia">Sin indicar</dd></div>
-          <div><dt>Inicio</dt><dd id="ob-res-fecha">Sin indicar</dd></div>
-        </dl>
-        <p class="ob-resumen-nota">El resumen no incluye tus datos de contacto.</p>
-        <p class="ob-sr-only" id="ob-resumen-sr" role="status" aria-live="polite"></p>
-      </aside>
+
+      <div class="ob-intro">
+        <span class="h26-eyebrow">Cotizar operación</span>
+        <h2 id="ob-titulo">Describe tu operación</h2>
+        <p class="h26-intro">Cuéntanos la ruta, la dotación y el turno. Con eso evaluamos el servicio y te respondemos con una propuesta concreta.</p>
+
+        <aside class="ob-resumen" aria-labelledby="ob-resumen-titulo">
+          <h3 id="ob-resumen-titulo">Resumen de la operación</h3>
+          <p class="ob-resumen-linea" id="ob-resumen-linea">Completa los campos para ver el resumen.</p>
+          <dl class="ob-resumen-lista">
+            <div><dt>Origen</dt><dd id="ob-res-origen">Sin indicar</dd></div>
+            <div><dt>Destino</dt><dd id="ob-res-destino">Sin indicar</dd></div>
+            <div><dt>Pasajeros</dt><dd id="ob-res-pasajeros">Sin indicar</dd></div>
+            <div><dt>Frecuencia</dt><dd id="ob-res-frecuencia">Sin indicar</dd></div>
+            <div><dt>Inicio</dt><dd id="ob-res-fecha">Sin indicar</dd></div>
+          </dl>
+          <p class="ob-resumen-nota">El resumen se actualiza mientras escribes. Nada se envía desde esta vista.</p>
+          <p class="h26-sr-only" id="ob-resumen-sr" role="status" aria-live="polite"></p>
+        </aside>
+
+        <ul class="ob-garantias">
+          <li><svg class="h26-icon h26-icon--sm" aria-hidden="true"><use href="#h26-i-lock"></use></svg><span>No pedimos RUT ni datos de facturación para el primer contacto.</span></li>
+          <li><svg class="h26-icon h26-icon--sm" aria-hidden="true"><use href="#h26-i-headset"></use></svg><span>¿Urgente? Escríbenos por <a href="https://wa.link/te8k8u" target="_blank" rel="noopener noreferrer">WhatsApp</a> o llama al <a href="tel:+56977684963">+56 9 7768 4963</a>.</span></li>
+        </ul>
+      </div>
 
       <form id="ob-form" class="ob-form" action="#" method="post" novalidate aria-labelledby="ob-titulo" onsubmit="return false">
-
-        <!-- Honeypot anti-spam: invisible para humanos, los bots lo llenan -->
-        <div class="hp-field" aria-hidden="true">
-          <label for="sitio_web">Sitio web</label>
+        <!-- Campo trampa antispam: invisible para personas usuarias. -->
+        <div class="ob-honey" aria-hidden="true">
+          <label for="sitio_web">No completar</label>
           <input type="text" name="sitio_web" id="sitio_web" tabindex="-1" autocomplete="off">
         </div>
 
         <fieldset class="ob-fieldset">
-          <legend>1. Datos de la operación</legend>
+          <legend>1. Tipo de servicio</legend>
+          <p class="ob-ayuda" id="ob-ayuda-tipo">Opcional. Ayuda a orientar la evaluación.</p>
+          <div class="ob-chips" role="group" aria-describedby="ob-ayuda-tipo">
+            <div class="ob-chip"><input type="radio" name="tipo_servicio" id="ts-recurrente" value="recurrente"><label for="ts-recurrente">Transporte recurrente</label></div>
+            <div class="ob-chip"><input type="radio" name="tipo_servicio" id="ts-faena" value="faena-mineria"><label for="ts-faena">Faena minera</label></div>
+            <div class="ob-chip"><input type="radio" name="tipo_servicio" id="ts-corporativo" value="corporativo"><label for="ts-corporativo">Corporativo</label></div>
+            <div class="ob-chip"><input type="radio" name="tipo_servicio" id="ts-aeropuerto" value="aeropuerto"><label for="ts-aeropuerto">Aeropuerto</label></div>
+            <div class="ob-chip"><input type="radio" name="tipo_servicio" id="ts-especial" value="especial"><label for="ts-especial">Especial</label></div>
+            <div class="ob-chip"><input type="radio" name="tipo_servicio" id="ts-otro" value="otro"><label for="ts-otro">Otro</label></div>
+          </div>
+          <div class="ob-campo ob-condicional" id="ob-cond-tipo" hidden>
+            <label for="tipo_servicio_otro">Describe el tipo de servicio</label>
+            <input type="text" id="tipo_servicio_otro" name="tipo_servicio_otro" autocomplete="off">
+          </div>
+        </fieldset>
 
-          <fieldset class="ob-grupo">
-            <legend>Tipo de servicio <span class="ob-opt">(opcional)</span></legend>
-            <div class="ob-chips">
-              <div class="ob-chip"><input type="radio" name="tipo_servicio" id="ts-recurrente" value="recurrente"><label for="ts-recurrente">Transporte recurrente</label></div>
-              <div class="ob-chip"><input type="radio" name="tipo_servicio" id="ts-faena" value="faena-mineria"><label for="ts-faena">Faena minera</label></div>
-              <div class="ob-chip"><input type="radio" name="tipo_servicio" id="ts-corporativo" value="corporativo"><label for="ts-corporativo">Corporativo</label></div>
-              <div class="ob-chip"><input type="radio" name="tipo_servicio" id="ts-aeropuerto" value="aeropuerto"><label for="ts-aeropuerto">Aeropuerto</label></div>
-              <div class="ob-chip"><input type="radio" name="tipo_servicio" id="ts-especial" value="especial"><label for="ts-especial">Especial</label></div>
-              <div class="ob-chip"><input type="radio" name="tipo_servicio" id="ts-otro" value="otro"><label for="ts-otro">Otro</label></div>
-            </div>
-          </fieldset>
-
+        <fieldset class="ob-fieldset">
+          <legend>2. Ruta</legend>
           <div class="ob-fila">
             <div class="ob-campo">
-              <label for="origen">Origen</label>
-              <input type="text" id="origen" name="origen" autocomplete="off" required aria-describedby="ob-err-origen">
+              <label for="origen">Origen <span class="ob-req" aria-hidden="true">*</span></label>
+              <input type="text" id="origen" name="origen" autocomplete="off" required aria-describedby="ob-err-origen" placeholder="Ej: Antofagasta">
               <p class="ob-error" id="ob-err-origen" hidden></p>
             </div>
             <div class="ob-campo">
-              <label for="destino">Destino</label>
-              <input type="text" id="destino" name="destino" autocomplete="off" required aria-describedby="ob-err-destino">
+              <label for="destino">Destino <span class="ob-req" aria-hidden="true">*</span></label>
+              <input type="text" id="destino" name="destino" autocomplete="off" required aria-describedby="ob-err-destino" placeholder="Ej: Mejillones">
               <p class="ob-error" id="ob-err-destino" hidden></p>
             </div>
           </div>
+        </fieldset>
 
+        <fieldset class="ob-fieldset">
+          <legend>3. Dotación y fechas</legend>
           <div class="ob-fila">
             <div class="ob-campo">
-              <label for="pasajeros">Pasajeros por viaje</label>
-              <input type="number" id="pasajeros" name="pasajeros" min="1" step="1" inputmode="numeric" required aria-describedby="ob-err-pasajeros">
+              <label for="pasajeros">Pasajeros por viaje <span class="ob-req" aria-hidden="true">*</span></label>
+              <input type="number" id="pasajeros" name="pasajeros" min="1" step="1" inputmode="numeric" required aria-describedby="ob-err-pasajeros" placeholder="Ej: 14">
               <p class="ob-error" id="ob-err-pasajeros" hidden></p>
             </div>
             <div class="ob-campo">
-              <label for="fecha_inicio">Fecha de inicio <span class="ob-opt">(opcional)</span></label>
+              <label for="fecha_inicio">Fecha estimada de inicio</label>
               <input type="date" id="fecha_inicio" name="fecha_inicio" aria-describedby="ob-ayuda-fecha">
               <p class="ob-ayuda" id="ob-ayuda-fecha">Puedes dejarla vacía si aún no está definida.</p>
             </div>
           </div>
+        </fieldset>
 
-          <fieldset class="ob-grupo" id="ob-grupo-frecuencia" aria-describedby="ob-ayuda-frecuencia ob-err-frecuencia">
-            <legend>Frecuencia</legend>
-            <p class="ob-ayuda" id="ob-ayuda-frecuencia">En turnos como 7x7, el primer número son días de trabajo y el segundo días de descanso.</p>
-            <div class="ob-chips">
-              <div class="ob-chip"><input type="radio" name="frecuencia" id="fr-unico" value="unico" required><label for="fr-unico">Único</label></div>
-              <div class="ob-chip"><input type="radio" name="frecuencia" id="fr-diario" value="diario"><label for="fr-diario">Diario</label></div>
-              <div class="ob-chip"><input type="radio" name="frecuencia" id="fr-5x2" value="5x2"><label for="fr-5x2">5x2</label></div>
-              <div class="ob-chip"><input type="radio" name="frecuencia" id="fr-4x3" value="4x3"><label for="fr-4x3">4x3</label></div>
-              <div class="ob-chip"><input type="radio" name="frecuencia" id="fr-7x7" value="7x7"><label for="fr-7x7">7x7</label></div>
-              <div class="ob-chip"><input type="radio" name="frecuencia" id="fr-14x14" value="14x14"><label for="fr-14x14">14x14</label></div>
-              <div class="ob-chip"><input type="radio" name="frecuencia" id="fr-otro" value="otro"><label for="fr-otro">Otro</label></div>
-            </div>
-            <p class="ob-error" id="ob-err-frecuencia" hidden></p>
-          </fieldset>
+        <fieldset class="ob-fieldset" id="ob-grupo-frecuencia" aria-describedby="ob-ayuda-frecuencia ob-err-frecuencia">
+          <legend>4. Frecuencia o turno <span class="ob-req" aria-hidden="true">*</span></legend>
+          <p class="ob-ayuda" id="ob-ayuda-frecuencia">En turnos como 7x7, el primer número son días de trabajo y el segundo días de descanso.</p>
+          <div class="ob-chips" role="radiogroup" aria-labelledby="ob-ayuda-frecuencia">
+            <div class="ob-chip"><input type="radio" name="frecuencia" id="fr-unico" value="unico" required><label for="fr-unico">Único</label></div>
+            <div class="ob-chip"><input type="radio" name="frecuencia" id="fr-diario" value="diario"><label for="fr-diario">Diario</label></div>
+            <div class="ob-chip"><input type="radio" name="frecuencia" id="fr-5x2" value="5x2"><label for="fr-5x2">5x2</label></div>
+            <div class="ob-chip"><input type="radio" name="frecuencia" id="fr-4x3" value="4x3"><label for="fr-4x3">4x3</label></div>
+            <div class="ob-chip"><input type="radio" name="frecuencia" id="fr-7x7" value="7x7"><label for="fr-7x7">7x7</label></div>
+            <div class="ob-chip"><input type="radio" name="frecuencia" id="fr-14x14" value="14x14"><label for="fr-14x14">14x14</label></div>
+            <div class="ob-chip"><input type="radio" name="frecuencia" id="fr-otro" value="otro"><label for="fr-otro">Otro</label></div>
+          </div>
+          <div class="ob-campo ob-condicional" id="ob-cond-frecuencia" hidden>
+            <label for="frecuencia_otro">Describe la frecuencia</label>
+            <input type="text" id="frecuencia_otro" name="frecuencia_otro" autocomplete="off" placeholder="Ej: 10x10 con relevo los martes">
+          </div>
+          <p class="ob-error" id="ob-err-frecuencia" hidden></p>
         </fieldset>
 
         <fieldset class="ob-fieldset">
-          <legend>2. Contacto</legend>
-
+          <legend>5. Contacto</legend>
+          <p class="ob-ayuda">Con estos datos te respondemos. No pedimos RUT, giro ni datos de facturación en esta etapa.</p>
           <div class="ob-fila">
             <div class="ob-campo">
-              <label for="empresa">Empresa</label>
+              <label for="empresa">Empresa <span class="ob-req" aria-hidden="true">*</span></label>
               <input type="text" id="empresa" name="empresa" autocomplete="organization" required aria-describedby="ob-err-empresa">
               <p class="ob-error" id="ob-err-empresa" hidden></p>
             </div>
             <div class="ob-campo">
-              <label for="nombre_contacto">Nombre de contacto</label>
+              <label for="nombre_contacto">Nombre de contacto <span class="ob-req" aria-hidden="true">*</span></label>
               <input type="text" id="nombre_contacto" name="nombre_contacto" autocomplete="name" required aria-describedby="ob-err-nombre_contacto">
               <p class="ob-error" id="ob-err-nombre_contacto" hidden></p>
             </div>
           </div>
-
           <div class="ob-fila">
             <div class="ob-campo">
-              <label for="telefono">Teléfono</label>
-              <input type="tel" id="telefono" name="telefono" autocomplete="tel" inputmode="tel" required aria-describedby="ob-err-telefono">
+              <label for="telefono">Teléfono <span class="ob-req" aria-hidden="true">*</span></label>
+              <input type="tel" id="telefono" name="telefono" autocomplete="tel" inputmode="tel" required aria-describedby="ob-err-telefono" placeholder="+56 9 ...">
               <p class="ob-error" id="ob-err-telefono" hidden></p>
             </div>
             <div class="ob-campo">
-              <label for="correo">Correo <span class="ob-opt">(opcional)</span></label>
+              <label for="correo">Correo electrónico</label>
               <input type="email" id="correo" name="correo" autocomplete="email" aria-describedby="ob-ayuda-correo ob-err-correo">
               <p class="ob-ayuda" id="ob-ayuda-correo">Solo si prefieres recibir respuesta por correo.</p>
               <p class="ob-error" id="ob-err-correo" hidden></p>
             </div>
           </div>
+        </fieldset>
 
+        <fieldset class="ob-fieldset">
+          <legend>6. Contexto adicional</legend>
           <div class="ob-campo">
-            <label for="informacion_adicional">Información adicional <span class="ob-opt">(opcional)</span></label>
-            <textarea id="informacion_adicional" name="informacion_adicional" rows="4"></textarea>
+            <label for="informacion_adicional">¿Hay algo más que debamos considerar?</label>
+            <textarea id="informacion_adicional" name="informacion_adicional" rows="4" placeholder="Accesos, horarios de ingreso a faena, requisitos de seguridad, etc."></textarea>
           </div>
         </fieldset>
 
-        <button type="button" id="ob-preview-btn" class="ob-boton">Revisar datos (vista previa)</button>
+        <div class="ob-acciones">
+          <button type="button" id="ob-preview-btn" class="ob-boton" data-estado="default">
+            <span class="ob-boton-texto">Revisar operación</span>
+            <span class="ob-boton-spinner" aria-hidden="true"></span>
+          </button>
+          <p class="ob-nota-legal">Prototipo de rediseño: esta vista no envía solicitudes.</p>
+        </div>
         <div id="ob-mensaje" class="ob-mensaje" role="status" tabindex="-1"></div>
       </form>
+
     </div>
   </div>
 </section>
 
-<!-- SECCIÓN PREGUNTAS FRECUENTES (AEO — responde búsquedas de voz e IA) -->
-<section id="preguntas-frecuentes" class="py-5 bg-light">
-  <div class="container" style="max-width:860px;">
-    <div class="text-center"><span class="section-eyebrow">FAQ</span></div>
-    <h2 class="text-center fw-bold mb-2" style="color:#002a4e;">Preguntas frecuentes</h2>
-    <p class="text-center mb-4" style="color:#555;">Lo que más nos consultan contratistas mineros y empresas industriales antes de iniciar una operación con Hauler.</p>
-    <div class="accordion" id="faqSeoAccordion">
 
-      <div class="accordion-item">
-        <h3 class="accordion-header">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqSeo1" aria-expanded="false" aria-controls="faqSeo1">
-            ¿Qué tamaño de servicio puede manejar Hauler?
-          </button>
-        </h3>
-        <div id="faqSeo1" class="accordion-collapse collapse" data-bs-parent="#faqSeoAccordion">
-          <div class="accordion-body">
-            Desde traslados ejecutivos individuales hasta operaciones recurrentes con varias unidades. El alcance y los vehículos se evalúan según ruta, pasajeros, horarios y disponibilidad.
-          </div>
-        </div>
+<!-- ============================================================
+     6. CASOS DE USO (PDF §6.6, §16)
+     Escenario operacional ilustrativo, NO un cliente real. Rotulado
+     explícitamente para no atribuir resultados a terceros.
+============================================================ -->
+<section id="casos" class="h26-cases h26-section" aria-labelledby="h26-cases-title">
+  <div class="h26-container">
+    <div class="h26-section-head">
+      <span class="h26-eyebrow">Casos de uso</span>
+      <h2 id="h26-cases-title">Cómo se resuelve un requerimiento típico</h2>
+      <p>Ejemplo construido para mostrar el método de trabajo, paso a paso.</p>
+    </div>
+
+    <article class="h26-case">
+      <p class="h26-case-tag">Escenario ilustrativo</p>
+      <h3>Traslado de una cuadrilla en turno 7x7 hacia una planta en Mejillones</h3>
+      <ol class="h26-case-steps">
+        <li><span class="h26-case-step-label">Necesidad</span><p>Una empresa contratista debe trasladar 15 personas desde Antofagasta hacia una planta en Mejillones en turno 7x7.</p></li>
+        <li><span class="h26-case-step-label">Restricciones</span><p>Ingreso a planta en ventana horaria fija, control de acceso con registro previo y necesidad de retorno el mismo día.</p></li>
+        <li><span class="h26-case-step-label">Solución propuesta</span><p>Un servicio recurrente con vehículo dimensionado para esa dotación, horario de salida ajustado a la ventana de ingreso y punto de encuentro único en Antofagasta.</p></li>
+        <li><span class="h26-case-step-label">Implementación</span><p>Se confirma ruta y horario, se entregan los datos requeridos para el acceso y se define un canal directo de coordinación para cambios de turno.</p></li>
+        <li><span class="h26-case-step-label">Resultado verificable</span><p>El indicador acordado es el cumplimiento de la ventana de ingreso en cada viaje, medido contra el horario comprometido. En un servicio real ese dato se reporta a la contraparte.</p></li>
+      </ol>
+      <p class="h26-case-note">Este caso no corresponde a un cliente real ni a un contrato ejecutado: describe el método con el que evaluamos un requerimiento. No publicamos resultados de terceros sin su autorización.</p>
+      <p class="h26-case-cta"><a href="#cotizar" class="btn-hauler-primary">Plantear mi caso</a></p>
+    </article>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     7. FLOTA Y ESTÁNDARES (PDF §6.7)
+     Categorías por dotación. No se declaran cantidades, marcas ni
+     patentes que no estén verificadas.
+============================================================ -->
+<section id="flota" class="h26-fleet h26-section" aria-labelledby="h26-fleet-title">
+  <div class="h26-container">
+    <div class="h26-section-head">
+      <span class="h26-eyebrow">Flota</span>
+      <h2 id="h26-fleet-title">El vehículo se define por la operación</h2>
+      <p>La dotación por viaje, la ruta y la frecuencia determinan qué categoría de vehículo corresponde. Lo confirmamos al evaluar tu requerimiento.</p>
+    </div>
+
+    <div class="h26-fleet-grid">
+      <article class="h26-capacity">
+        <p class="h26-capacity-range">Grupos pequeños</p>
+        <h3>Traslados ejecutivos</h3>
+        <p>Movimientos puntuales de visitas técnicas, ejecutivos y equipos reducidos entre aeropuerto, oficinas y faena.</p>
+      </article>
+      <article class="h26-capacity">
+        <p class="h26-capacity-range">Dotaciones medianas</p>
+        <h3>Equipos de trabajo</h3>
+        <p>Cuadrillas y turnos que se movilizan juntos en un mismo horario y punto de encuentro.</p>
+      </article>
+      <article class="h26-capacity">
+        <p class="h26-capacity-range">Dotaciones mayores</p>
+        <h3>Transporte de personal</h3>
+        <p>Servicios recurrentes de mayor volumen, coordinados con los cambios de turno de la operación.</p>
+      </article>
+    </div>
+
+    <div class="h26-shifts">
+      <h3>Turnos que podemos coordinar</h3>
+      <p>Los regímenes se acuerdan con la contraparte operacional. Si el tuyo no está en la lista, indícalo en el formulario.</p>
+      <ul class="h26-shift-list">
+        <li>Viaje único</li>
+        <li>Diario</li>
+        <li>5x2</li>
+        <li>4x3</li>
+        <li>7x7</li>
+        <li>14x14</li>
+      </ul>
+      <ul class="h26-shift-standards" aria-label="Estándares de operación">
+        <li><svg class="h26-icon h26-icon--sm" aria-hidden="true"><use href="#h26-i-shield"></use></svg>Conductores con licencia profesional vigente.</li>
+        <li><svg class="h26-icon h26-icon--sm" aria-hidden="true"><use href="#h26-i-clipboard"></use></svg>Documentación del vehículo al día para el servicio contratado.</li>
+        <li><svg class="h26-icon h26-icon--sm" aria-hidden="true"><use href="#h26-i-refresh"></use></svg>Coordinación de cambios de turno con la contraparte operacional.</li>
+      </ul>
+      <p class="h26-trust-foot">La disponibilidad y las características exactas del vehículo se confirman para cada servicio, según ruta y fecha.</p>
+    </div>
+
+    <figure class="h26-fleet-media">
+      <img src="public_html/img/4.webp" alt="Vehículo de transporte de personal de Hauler en ruta en el norte de Chile" loading="lazy" decoding="async" width="1200" height="525">
+      <figcaption>Operación de transporte de personal en la Región de Antofagasta.</figcaption>
+    </figure>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     8. TRUST CENTER (PDF §6.8, §15)
+     Solo compromisos operacionales verificables. Sin certificaciones,
+     premios ni clientes que no estén documentados.
+============================================================ -->
+<section id="trust" class="h26-trust h26-section" aria-labelledby="h26-trust-title">
+  <div class="h26-container">
+    <div class="h26-section-head">
+      <span class="h26-eyebrow">Trust center</span>
+      <h2 id="h26-trust-title">Qué puedes verificar antes de contratar</h2>
+      <p>Preferimos declarar solo lo que podemos sostener en una reunión de evaluación.</p>
+    </div>
+    <div class="h26-trust-grid">
+      <article class="h26-trust-card">
+        <span class="h26-trust-icon"><svg class="h26-icon h26-icon--lg" aria-hidden="true"><use href="#h26-i-doc"></use></svg></span>
+        <h3>Antecedentes de la empresa</h3>
+        <p>Hauler SpA opera desde Antofagasta y entrega sus antecedentes legales y tributarios durante el proceso de evaluación comercial.</p>
+      </article>
+      <article class="h26-trust-card">
+        <span class="h26-trust-icon"><svg class="h26-icon h26-icon--lg" aria-hidden="true"><use href="#h26-i-shield"></use></svg></span>
+        <h3>Documentación del servicio</h3>
+        <p>Antes de iniciar, se revisa la documentación exigida por la contraparte para conductores y vehículos asignados.</p>
+      </article>
+      <article class="h26-trust-card">
+        <span class="h26-trust-icon"><svg class="h26-icon h26-icon--lg" aria-hidden="true"><use href="#h26-i-headset"></use></svg></span>
+        <h3>Canal de coordinación</h3>
+        <p>Cada servicio recurrente define una contraparte directa para cambios de turno, incidencias y ajustes de horario.</p>
+      </article>
+      <article class="h26-trust-card">
+        <span class="h26-trust-icon"><svg class="h26-icon h26-icon--lg" aria-hidden="true"><use href="#h26-i-lock"></use></svg></span>
+        <h3>Tratamiento de datos</h3>
+        <p>Los datos de contacto se usan solo para responder la solicitud, conforme a la Ley N° 19.628. Revisa la <a href="#" data-bs-toggle="modal" data-bs-target="#privacidadModal">política de privacidad</a>.</p>
+      </article>
+    </div>
+    <p class="h26-trust-foot">No publicamos certificaciones, premios ni nombres de clientes que no podamos respaldar con documentación vigente.</p>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     9. COBERTURA (PDF §6.9, §9)
+     Consola operacional: mapa SVG simplificado del norte + equivalente
+     textual accesible. El SVG es decorativo; la lista es la fuente.
+============================================================ -->
+<section id="cobertura" class="h26-coverage h26-section" aria-labelledby="h26-coverage-title">
+  <div class="h26-container">
+    <div class="h26-coverage-grid">
+      <div class="h26-coverage-copy">
+        <span class="h26-eyebrow h26-eyebrow--onnavy">Cobertura</span>
+        <h2 id="h26-coverage-title">Base en Antofagasta, operación en la región</h2>
+        <p class="h26-intro">Trabajamos rutas dentro de la Región de Antofagasta y traslados hacia destinos del norte cuando la operación lo requiere.</p>
+        <ul class="h26-coverage-list">
+          <li><svg class="h26-icon h26-icon--sm" aria-hidden="true"><use href="#h26-i-pin"></use></svg><strong>Antofagasta</strong><span>Base de operaciones y punto de partida habitual.</span></li>
+          <li><svg class="h26-icon h26-icon--sm" aria-hidden="true"><use href="#h26-i-pin"></use></svg><strong>Mejillones</strong><span>Corredor industrial y portuario.</span></li>
+          <li><svg class="h26-icon h26-icon--sm" aria-hidden="true"><use href="#h26-i-pin"></use></svg><strong>Calama</strong><span>Conexión hacia faenas del interior.</span></li>
+          <li><svg class="h26-icon h26-icon--sm" aria-hidden="true"><use href="#h26-i-plane"></use></svg><strong>Aeropuerto Andrés Sabella</strong><span>Conexiones con vuelos y alojamientos.</span></li>
+        </ul>
+        <p class="h26-coverage-note">¿Tu ruta no aparece? Descríbela y evaluamos factibilidad.</p>
+        <a href="#cotizar" class="btn-hauler-secondary btn-hauler-secondary--onnavy">Consultar una ruta</a>
       </div>
 
+      <figure class="h26-map">
+        <svg viewBox="0 0 360 460" role="img" aria-labelledby="h26-map-title h26-map-desc" >
+          <title id="h26-map-title">Mapa esquemático de la Región de Antofagasta</title>
+          <desc id="h26-map-desc">Representación simplificada de la costa del norte de Chile con Antofagasta, Mejillones, Calama y el aeropuerto Andrés Sabella.</desc>
+          <path class="h26-map-land" d="M108 14 132 58 126 96 146 130 138 168 160 206 150 246 172 286 164 326 186 368 176 410 196 446 300 446 300 14z"/>
+          <path class="h26-map-coast" d="M108 14 132 58 126 96 146 130 138 168 160 206 150 246 172 286 164 326 186 368 176 410 196 446"/>
+          <g class="h26-map-route"><path d="M186 300 L206 214"/><path d="M186 300 L252 150"/><path d="M186 300 L196 336"/></g>
+          <g class="h26-map-node h26-map-node--base"><circle cx="186" cy="300" r="9"/><text class="h26-map-label h26-map-label--base" x="204" y="305">Antofagasta</text></g>
+          <g class="h26-map-node"><circle cx="206" cy="214" r="5.5"/><text class="h26-map-label" x="220" y="218">Mejillones</text></g>
+          <g class="h26-map-node"><circle cx="252" cy="150" r="5.5"/><text class="h26-map-label" x="266" y="154">Calama</text></g>
+          <g class="h26-map-node"><circle cx="196" cy="336" r="5.5"/><text class="h26-map-label" x="210" y="340">Aeropuerto ANF</text></g>
+        </svg>
+        <figcaption class="h26-map-caption">Esquema referencial de cobertura. No es un mapa a escala.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     10. PREGUNTAS FRECUENTES (PDF §6.10) — coincide con FAQPage JSON-LD
+============================================================ -->
+<section id="preguntas-frecuentes" class="h26-faq h26-section" aria-labelledby="h26-faq-title">
+  <div class="h26-container h26-container--narrow">
+    <div class="h26-section-head">
+      <span class="h26-eyebrow">Preguntas frecuentes</span>
+      <h2 id="h26-faq-title">Antes de cotizar</h2>
+    </div>
+    <div class="accordion" id="faqAccordion">
       <div class="accordion-item">
-        <h3 class="accordion-header">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqSeo2" aria-expanded="false" aria-controls="faqSeo2">
-            ¿Hauler es proveedor directo de las grandes mineras?
-          </button>
+        <h3 class="accordion-header" id="faq-h1">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-1" aria-expanded="false" aria-controls="faq-1">¿Qué zonas cubre Hauler en la Región de Antofagasta?</button>
         </h3>
-        <div id="faqSeo2" class="accordion-collapse collapse" data-bs-parent="#faqSeoAccordion">
-          <div class="accordion-body">
-            En esta página describimos servicios para contratistas y proveedores industriales de la región. Si tu empresa requiere una relación contractual directa, conversemos sobre las condiciones de esa operación.
-          </div>
+        <div id="faq-1" class="accordion-collapse collapse" aria-labelledby="faq-h1" data-bs-parent="#faqAccordion">
+          <div class="accordion-body"><p>Operamos traslados dentro de la Región de Antofagasta, incluyendo Antofagasta, Mejillones, Calama y conexiones con el Aeropuerto Andrés Sabella. Para destinos fuera de la región evaluamos factibilidad según la ruta.</p></div>
         </div>
       </div>
-
       <div class="accordion-item">
-        <h3 class="accordion-header">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqSeo3" aria-expanded="false" aria-controls="faqSeo3">
-            ¿Cómo consulto por un servicio nuevo o urgente?
-          </button>
+        <h3 class="accordion-header" id="faq-h2">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-2" aria-expanded="false" aria-controls="faq-2">¿Trabajan con contratistas mineros y empresas industriales?</button>
         </h3>
-        <div id="faqSeo3" class="accordion-collapse collapse" data-bs-parent="#faqSeoAccordion">
-          <div class="accordion-body">
-            El plazo depende de la ruta, la dotación y la fecha solicitada. Comparte esos datos para revisar el alcance del servicio. Si es una contingencia, contáctanos por WhatsApp para consultar disponibilidad.
-          </div>
+        <div id="faq-2" class="accordion-collapse collapse" aria-labelledby="faq-h2" data-bs-parent="#faqAccordion">
+          <div class="accordion-body"><p>Sí. Nuestro servicio está orientado a empresas: contratistas mineros, compañías industriales y organizaciones que necesitan trasladar personal de forma puntual o recurrente.</p></div>
         </div>
       </div>
-
       <div class="accordion-item">
-        <h3 class="accordion-header">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqSeo4" aria-expanded="false" aria-controls="faqSeo4">
-            ¿Qué documentación entregan al cliente?
-          </button>
+        <h3 class="accordion-header" id="faq-h3">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-3" aria-expanded="false" aria-controls="faq-3">¿Cómo se cotiza un traslado?</button>
         </h3>
-        <div id="faqSeo4" class="accordion-collapse collapse" data-bs-parent="#faqSeoAccordion">
-          <div class="accordion-body">
-            Los requisitos documentales dependen del cliente, la ruta y el lugar de ingreso. Indícanos las exigencias de tu operación para revisarlas antes de confirmar el servicio.
-          </div>
+        <div id="faq-3" class="accordion-collapse collapse" aria-labelledby="faq-h3" data-bs-parent="#faqAccordion">
+          <div class="accordion-body"><p>Necesitamos origen, destino, cantidad de pasajeros, frecuencia o turno y fecha estimada de inicio. Con esos datos evaluamos la ruta y preparamos una propuesta.</p></div>
         </div>
       </div>
-
       <div class="accordion-item">
-        <h3 class="accordion-header">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqSeo5" aria-expanded="false" aria-controls="faqSeo5">
-            ¿Operan fuera de la Región de Antofagasta?
-          </button>
+        <h3 class="accordion-header" id="faq-h4">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-4" aria-expanded="false" aria-controls="faq-4">¿Necesito entregar RUT o datos de facturación para pedir una evaluación?</button>
         </h3>
-        <div id="faqSeo5" class="accordion-collapse collapse" data-bs-parent="#faqSeoAccordion">
-          <div class="accordion-body">
-            Nuestra base operacional está en Antofagasta. Evaluamos servicios hacia Calama, Mejillones, Sierra Gorda, Tocopilla y zonas adyacentes según el requerimiento. Para servicios fuera de la región se coordina caso a caso, según disponibilidad y características de la operación.
-          </div>
+        <div id="faq-4" class="accordion-collapse collapse" aria-labelledby="faq-h4" data-bs-parent="#faqAccordion">
+          <div class="accordion-body"><p>No. Para el primer contacto basta con la ruta, la dotación, el turno y un medio de contacto. Los antecedentes administrativos se solicitan solo si avanzamos a la contratación.</p></div>
         </div>
       </div>
-
       <div class="accordion-item">
-        <h3 class="accordion-header">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqSeo6" aria-expanded="false" aria-controls="faqSeo6">
-            ¿Qué servicios de transporte ofrecen en Antofagasta?
-          </button>
+        <h3 class="accordion-header" id="faq-h5">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-5" aria-expanded="false" aria-controls="faq-5">¿Atienden traslados desde y hacia el aeropuerto?</button>
         </h3>
-        <div id="faqSeo6" class="accordion-collapse collapse" data-bs-parent="#faqSeoAccordion">
-          <div class="accordion-body">
-            Transporte de personal a faenas, movilidad corporativa, conexiones entre aeropuerto, hoteles y faenas, y apoyo a traslados especiales. Cada solicitud se revisa según su operación.
-          </div>
+        <div id="faq-5" class="accordion-collapse collapse" aria-labelledby="faq-h5" data-bs-parent="#faqAccordion">
+          <div class="accordion-body"><p>Sí. Coordinamos conexiones entre el Aeropuerto Andrés Sabella, alojamientos, oficinas y puntos de trabajo, ajustadas a los horarios de vuelo informados.</p></div>
         </div>
       </div>
+      <div class="accordion-item">
+        <h3 class="accordion-header" id="faq-h6">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-6" aria-expanded="false" aria-controls="faq-6">¿Se pueden coordinar turnos como 7x7 o 14x14?</button>
+        </h3>
+        <div id="faq-6" class="accordion-collapse collapse" aria-labelledby="faq-h6" data-bs-parent="#faqAccordion">
+          <div class="accordion-body"><p>Sí. Los servicios recurrentes se organizan según el sistema de turnos de la operación. Indícanos el régimen y la fecha de inicio para evaluarlo.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
+
+<!-- ============================================================
+     11. CTA FINAL (PDF §6.11)
+============================================================ -->
+<section id="cta-final" class="h26-final-cta h26-section" aria-labelledby="h26-cta-title">
+  <div class="h26-container">
+    <h2 id="h26-cta-title">Cuéntanos la ruta y evaluamos el servicio</h2>
+    <p>Describe tu operación en el formulario o escríbenos directo si necesitas respuesta hoy.</p>
+    <div class="h26-final-actions">
+      <a href="#cotizar" class="btn-hauler-primary">Cotizar operación</a>
+      <a href="https://wa.link/te8k8u" target="_blank" rel="noopener noreferrer" class="btn-hauler-secondary btn-hauler-secondary--onnavy" data-h26-evento="click_whatsapp">
+        <svg class="h26-icon h26-icon--sm" aria-hidden="true"><use href="#h26-i-whatsapp"></use></svg>
+        WhatsApp
+      </a>
+      <a href="tel:+56977684963" class="h26-cta-phone" data-h26-evento="click_phone">
+        <svg class="h26-icon h26-icon--sm" aria-hidden="true"><use href="#h26-i-phone"></use></svg>
+        +56 9 7768 4963
+      </a>
     </div>
   </div>
 </section>
 
 </main>
 
-<!-- FOOTER -->
-<footer class="footer bg-dark-blue text-white py-5">
-  <div class="container">
-    <div class="row justify-content-center text-start">
-      <div class="col-12 col-md-3 mb-4 mb-md-0">
-        <h3 class="fw-bold h5">Hauler</h3>
-        <p class="small mb-0">Operador de transporte corporativo, industrial y minero en la Región de Antofagasta.</p>
+
+<!-- ============================================================
+     12. FOOTER (PDF §6.12, §8: "Soy proveedor" fuera del nav principal)
+============================================================ -->
+<footer class="footer" id="contacto">
+  <div class="h26-container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="public_html/LOGOS/isologo.png" alt="Hauler SpA" width="120" height="120" loading="lazy" decoding="async">
+        <p>Transporte de personal, corporativo e industrial con base en Antofagasta, Chile.</p>
       </div>
 
-      <div class="col-12 col-md-3 mb-4 mb-md-0">
-        <h3 class="fw-bold h5">Contacto</h3>
-        <ul class="list-unstyled small mb-0">
-          <li><i class="fa fa-phone me-2" aria-hidden="true"></i><a href="tel:+56968646396" style="color:#fff; text-decoration: none;">+56 9 6864 6396</a></li>
-          <li><i class="fa fa-envelope me-2" aria-hidden="true"></i><a href="mailto:contacto@hauler.cl" style="color:#fff; text-decoration: none;">contacto@hauler.cl</a></li>
-          <li><i class="fa fa-map-marker-alt me-2" aria-hidden="true"></i>Uribe 636 Of. 302, C. de Negocios, Antofagasta, Chile.</li>
+      <div class="footer-col">
+        <h2>Servicios</h2>
+        <ul>
+          <li><a href="#servicios">Transporte a faenas</a></li>
+          <li><a href="#servicios">Movilidad corporativa</a></li>
+          <li><a href="#servicios">Aeropuerto, hotel y faena</a></li>
+          <li><a href="https://hauler.cl/transporte.php">Transporte de personal</a></li>
+          <li><a href="https://hauler.cl/transporte-de-personal-mineria.php">Transporte para minería</a></li>
         </ul>
       </div>
 
-      <div class="col-12 col-md-3 mb-4 mb-md-0">
-        <h3 class="fw-bold h5">Enlaces Rápidos</h3>
-        <ul class="list-unstyled small mb-0">
-          <li><a href="#" class="footer-link" data-bs-toggle="modal" data-bs-target="#terminosModal">Términos y Condiciones</a></li>
-          <li><a href="#" class="footer-link" data-bs-toggle="modal" data-bs-target="#privacidadModal">Política de Privacidad</a></li>
-          <li><a href="#preguntas-frecuentes" class="footer-link">Preguntas Frecuentes</a></li>
-          <li class="mt-2"><a href="https://hauler.cl/transporte-de-personal-mineria" class="footer-link">Transporte de Personal Minería</a></li>
-          <li><a href="https://hauler.cl/transporte-de-personal-antofagasta" class="footer-link">Transporte de Personal Antofagasta</a></li>
-          <li><a href="https://hauler.cl/transporte-de-personal-calama" class="footer-link">Transporte de Personal Calama</a></li>
-          <li><a href="https://hauler.cl/transporte-aeropuerto-antofagasta" class="footer-link">Transporte Aeropuerto Antofagasta</a></li>
+      <div class="footer-col">
+        <h2>Empresa</h2>
+        <ul>
+          <li><a href="#quienes-somos">Quiénes somos</a></li>
+          <li><a href="#flota">Flota y estándares</a></li>
+          <li><a href="#trust">Trust center</a></li>
+          <li><a href="#cobertura">Cobertura</a></li>
+          <li><a href="#preguntas-frecuentes">Preguntas frecuentes</a></li>
+          <li><a href="https://hauler.cl/proveedores.php">Sección proveedores</a></li>
         </ul>
       </div>
 
-      <div class="col-12 col-md-3">
-        <h3 class="fw-bold h5">Escríbenos</h3>
-        <div class="d-flex gap-3">
-          <a href="https://wa.link/te8k8u" target="_blank" rel="noopener noreferrer" class="text-white fs-5" aria-label="WhatsApp Hauler"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
-          <a href="mailto:contacto@hauler.cl" class="text-white fs-5" aria-label="Correo Hauler"><i class="fa fa-envelope" aria-hidden="true"></i></a>
-          <a href="tel:+56968646396" class="text-white fs-5" aria-label="Llamar a Hauler"><i class="fa fa-phone" aria-hidden="true"></i></a>
-        </div>
-        <p class="small mt-3 mb-0" style="opacity:.75;">Para una necesidad operativa, escríbenos por WhatsApp.</p>
+      <div class="footer-col footer-contact">
+        <h2>Contacto</h2>
+        <ul class="footer-contact-list">
+          <li><a href="tel:+56977684963" data-h26-evento="click_phone"><svg class="h26-icon h26-icon--sm" aria-hidden="true"><use href="#h26-i-phone"></use></svg>+56 9 7768 4963</a></li>
+          <li><a href="mailto:contacto@hauler.cl" data-h26-evento="click_email"><svg class="h26-icon h26-icon--sm" aria-hidden="true"><use href="#h26-i-mail"></use></svg>contacto@hauler.cl</a></li>
+          <li><a href="https://wa.link/te8k8u" target="_blank" rel="noopener noreferrer" data-h26-evento="click_whatsapp"><svg class="h26-icon h26-icon--sm" aria-hidden="true"><use href="#h26-i-whatsapp"></use></svg>WhatsApp</a></li>
+          <li><span><svg class="h26-icon h26-icon--sm" aria-hidden="true"><use href="#h26-i-pin"></use></svg>Antofagasta, Región de Antofagasta, Chile</span></li>
+        </ul>
       </div>
     </div>
 
-    <hr class="border-secondary my-4" />
-    <p class="text-center small mb-0">&copy; 2026 Hauler SpA — Todos los derechos reservados.</p>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Hauler SpA. Todos los derechos reservados.</p>
+      <ul>
+        <li><a href="#" data-bs-toggle="modal" data-bs-target="#terminosModal">Términos y condiciones</a></li>
+        <li><a href="#" data-bs-toggle="modal" data-bs-target="#privacidadModal">Política de privacidad</a></li>
+      </ul>
+    </div>
   </div>
 </footer>
 
 
-<!-- Modal: Términos y Condiciones -->
+<!-- ============================================================
+     BARRA INFERIOR MÓVIL (PDF §14) — se oculta cuando el teclado está activo
+============================================================ -->
+<div class="h26-mobilebar" id="h26-mobilebar" data-oculta="false">
+  <a href="#cotizar" class="h26-mobilebar-btn h26-mobilebar-btn--primary">Cotizar</a>
+  <a href="https://wa.link/te8k8u" target="_blank" rel="noopener noreferrer" class="h26-mobilebar-btn h26-mobilebar-btn--wa" data-h26-evento="click_whatsapp">
+    <svg class="h26-icon h26-icon--sm" aria-hidden="true"><use href="#h26-i-whatsapp"></use></svg>
+    WhatsApp
+  </a>
+</div>
+
+
+<!-- Modal: Términos y Condiciones (sin emojis, PDF §9) -->
 <div class="modal fade" id="terminosModal" tabindex="-1" aria-labelledby="terminosLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg modal-dialog-scrollable modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="terminosLabel"><i class="fa fa-file-contract me-2"></i>Términos y Condiciones de Hauler</h5>
+        <h2 class="modal-title h5" id="terminosLabel">Términos y Condiciones de Hauler</h2>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
       </div>
-      <div class="modal-body text-dark">
-        <h6><i class="fa fa-book me-2 text-primary"></i>1. Introducción</h6>
+      <div class="modal-body">
+        <h3>1. Introducción</h3>
         <p>El presente documento establece los términos y condiciones bajo los cuales Hauler SpA presta servicios de transporte de carga y personal en Chile. Al contratar nuestros servicios, el cliente acepta íntegramente estas condiciones.</p>
-        <h6><i class="fa fa-align-left me-2 text-primary"></i>2. Definiciones</h6>
+        <h3>2. Definiciones</h3>
         <ul>
           <li><strong>Cliente:</strong> Persona natural o jurídica que contrata los servicios de Hauler.</li>
           <li><strong>Servicio:</strong> Transporte de carga o personal solicitado a Hauler.</li>
           <li><strong>Contrato:</strong> Acuerdo entre Hauler y el Cliente que regula las condiciones específicas del servicio.</li>
         </ul>
-        <h6><i class="fa fa-truck me-2 text-primary"></i>3. Servicios Ofrecidos</h6>
+        <h3>3. Servicios Ofrecidos</h3>
         <ul>
-          <li>🚌 Transporte de personal industrial.</li>
-          <li>🧍‍♂️ Movilidad corporativa para faenas mineras.</li>
-          <li>📦 Servicios logísticos complementarios.</li>
+          <li>Transporte de personal industrial.</li>
+          <li>Movilidad corporativa para faenas mineras.</li>
+          <li>Servicios logísticos complementarios.</li>
         </ul>
-        <h6><i class="fa fa-check-circle me-2 text-primary"></i>4. Condiciones de Servicio</h6>
+        <h3>4. Condiciones de Servicio</h3>
         <ul>
-          <li>✅ Los servicios están sujetos a disponibilidad y confirmación por parte de Hauler.</li>
-          <li>📝 El Cliente debe proporcionar información veraz y completa para la correcta prestación del servicio.</li>
-          <li>⏰ Modificaciones o cancelaciones deben ser informadas con al menos 24 horas de anticipación.</li>
+          <li>Los servicios están sujetos a disponibilidad y confirmación por parte de Hauler.</li>
+          <li>El Cliente debe proporcionar información veraz y completa para la correcta prestación del servicio.</li>
+          <li>Modificaciones o cancelaciones deben ser informadas con al menos 24 horas de anticipación.</li>
         </ul>
-        <h6><i class="fa fa-shield-alt me-2 text-primary"></i>5. Responsabilidades</h6>
+        <h3>5. Responsabilidades</h3>
         <ul>
-          <li>👷 Hauler se compromete a prestar los servicios con profesionalismo y conforme a la normativa legal chilena.</li>
-          <li>⚠️ No se hace responsable por demoras o incumplimientos derivados de causas de fuerza mayor.</li>
+          <li>Hauler se compromete a prestar los servicios con profesionalismo y conforme a la normativa legal chilena.</li>
+          <li>No se hace responsable por demoras o incumplimientos derivados de causas de fuerza mayor.</li>
         </ul>
-        <h6><i class="fa fa-dollar-sign me-2 text-primary"></i>6. Tarifas y Pagos</h6>
+        <h3>6. Tarifas y Pagos</h3>
         <ul>
-          <li>💲 Las tarifas serán informadas previamente al Cliente.</li>
-          <li>💳 El pago debe realizarse según lo acordado en el contrato. Retrasos pueden generar intereses por mora.</li>
+          <li>Las tarifas serán informadas previamente al Cliente.</li>
+          <li>El pago debe realizarse según lo acordado en el contrato. Retrasos pueden generar intereses por mora.</li>
         </ul>
-        <h6><i class="fa fa-copyright me-2 text-primary"></i>7. Propiedad Intelectual</h6>
+        <h3>7. Propiedad Intelectual</h3>
         <p>Todos los contenidos y materiales proporcionados por Hauler son propiedad de la empresa y no pueden ser utilizados sin autorización.</p>
-        <h6><i class="fa fa-gavel me-2 text-primary"></i>8. Legislación Aplicable</h6>
+        <h3>8. Legislación Aplicable</h3>
         <p>Estos términos se rigen por las leyes de la República de Chile. Cualquier disputa será resuelta por los tribunales competentes de Antofagasta.</p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn-hauler-secondary" data-bs-dismiss="modal">Cerrar</button>
       </div>
     </div>
   </div>
 </div>
 
 
-<!-- Modal: Política de Privacidad -->
+<!-- Modal: Política de Privacidad (sin emojis, PDF §9) -->
 <div class="modal fade" id="privacidadModal" tabindex="-1" aria-labelledby="privacidadLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg modal-dialog-scrollable modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="privacidadLabel"><i class="fa fa-user-shield me-2"></i>Política de Privacidad de Hauler</h5>
+        <h2 class="modal-title h5" id="privacidadLabel">Política de Privacidad de Hauler</h2>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
       </div>
-      <div class="modal-body text-dark">
-        <h6><i class="fa fa-book me-2 text-primary"></i>1. Introducción</h6>
+      <div class="modal-body">
+        <h3>1. Introducción</h3>
         <p>Hauler SpA se compromete a proteger la privacidad de sus clientes y usuarios, conforme a la Ley N° 19.628 sobre Protección de la Vida Privada.</p>
-        <h6><i class="fa fa-database me-2 text-primary"></i>2. Datos Recopilados</h6>
+        <h3>2. Datos Recopilados</h3>
         <p>Recopilamos datos personales como nombre, RUT, dirección, correo electrónico y teléfono, necesarios para la prestación de nuestros servicios.</p>
-        <h6><i class="fa fa-user-check me-2 text-primary"></i>3. Uso de los Datos</h6>
+        <h3>3. Uso de los Datos</h3>
         <ul>
-          <li>✔️ Prestación de servicios contratados.</li>
-          <li>📞 Comunicación con el Cliente.</li>
-          <li>⚖️ Cumplimiento de obligaciones legales.</li>
+          <li>Prestación de servicios contratados.</li>
+          <li>Comunicación con el Cliente.</li>
+          <li>Cumplimiento de obligaciones legales.</li>
         </ul>
-        <h6><i class="fa fa-shield-alt me-2 text-primary"></i>4. Seguridad de los Datos</h6>
+        <h3>4. Seguridad de los Datos</h3>
         <p>Implementamos medidas de seguridad para proteger los datos personales contra accesos no autorizados o usos indebidos.</p>
-        <h6><i class="fa fa-envelope me-2 text-primary"></i>5. Derechos del Usuario</h6>
+        <h3>5. Derechos del Usuario</h3>
         <p>El Cliente puede ejercer sus derechos de acceso, rectificación, cancelación y oposición enviando una solicitud a <strong>contacto@hauler.cl</strong>.</p>
-        <h6><i class="fa fa-edit me-2 text-primary"></i>6. Modificaciones</h6>
+        <h3>6. Modificaciones</h3>
         <p>Hauler se reserva el derecho de modificar esta política. Las modificaciones serán informadas a través de nuestro sitio web.</p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn-hauler-secondary" data-bs-dismiss="modal">Cerrar</button>
       </div>
     </div>
   </div>
@@ -785,22 +1044,10 @@
 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous" defer></script>
-
-<!-- Premium motion engine v12 (60fps, defer = no bloquea render) -->
-<script src="public_html/js/animations-v12.js" defer></script>
+<script src="public_html/js/home-2026.js" defer></script>
 <script src="public_html/js/operation-builder.js" defer></script>
 
 
-
-
-<a href="https://wa.link/te8k8u"
-   class="whatsapp-float"
-   target="_blank"
-   rel="noopener noreferrer"
-   title="Chatea con nosotros por WhatsApp"
-   aria-label="Contactar Hauler por WhatsApp">
-    <i class="fab fa-whatsapp" aria-hidden="true"></i>
-</a>
 <!-- Saludo Fiestas Patrias 2026 - TEMPORAL, retirar despues del lunes 21-sep -->
 
 </body>
